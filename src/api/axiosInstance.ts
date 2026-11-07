@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { clearStoredOrgId, setStoredOrgId } from '@/lib/authStorage';
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/erp/api';
@@ -25,6 +26,10 @@ interface RefreshResponse {
   status: string;
 }
 
+interface RetriableRequestConfig extends InternalAxiosRequestConfig {
+  _retry?: boolean;
+}
+
 /**
  * Single-flight refresh token request.
  *
@@ -35,7 +40,7 @@ interface RefreshResponse {
  */
 let refreshPromise: Promise<number | null> | null = null;
 
-export async function refreshSession(): Promise<number | null> {
+export function refreshSession(): Promise<number | null> {
   if (!refreshPromise) {
     refreshPromise = authClient
       .post<RefreshResponse>('/v1/refresh')
@@ -60,27 +65,54 @@ function isAuthRequest(url: string | undefined): boolean {
   );
 }
 
+function isRetried(config: InternalAxiosRequestConfig | undefined): boolean {
+  return !!(config as RetriableRequestConfig | undefined)?._retry;
+}
+
+function statusOf(err: AxiosError): number | undefined {
+  return err.response?.status ?? err.status;
+}
+
+function isUnauthorized(err: AxiosError): boolean {
+  return statusOf(err) === 401;
+}
+
+/**
+ * The JWT filter rejects expired tokens before Spring MVC runs, and those
+ * responses do not always carry the CORS headers the browser needs to expose
+ * them. In that case axios reports a network error with no response at all,
+ * even though the request actually failed with a 401. Treat that opaque
+ * failure as a possible auth failure and let the refresh attempt decide.
+ */
+function isOpaqueAuthFailure(err: AxiosError): boolean {
+  return !err.response && err.code === 'ERR_NETWORK';
+}
+
+function signOut(): void {
+  clearStoredOrgId();
+
+  if (typeof window === 'undefined') return;
+  if (window.location.pathname !== '/login') {
+    window.location.assign('/login');
+  }
+}
+
 api.interceptors.response.use(
   (res) => res,
-  async (err) => {
-    const original = err.config;
+  async (err: AxiosError) => {
+    const original = err.config as RetriableRequestConfig | undefined;
 
-    // Only attempt token refresh for real 401 responses on non-auth endpoints.
-    if (!original || err.response?.status !== 401) {
+    if (!original || axios.isCancel(err) || isAuthRequest(original.url)) {
       return Promise.reject(err);
     }
 
-    // Auth endpoints (login/refresh/logout) must never trigger a refresh loop.
-    if (isAuthRequest(original.url)) {
+    const unauthorized = isUnauthorized(err);
+    if (!unauthorized && !isOpaqueAuthFailure(err)) {
       return Promise.reject(err);
     }
 
-    // Already retried once after a refresh. The access token could not be
-    // restored, so stop retrying, clear the stored org id, and send the user
-    // back to the login screen instead of surfacing a raw unhandled 401.
-    if (original._retry) {
-      clearStoredOrgId();
-      window.location.href = '/login';
+    if (isRetried(original)) {
+      if (unauthorized) signOut();
       return Promise.reject(err);
     }
 
@@ -88,15 +120,13 @@ api.interceptors.response.use(
 
     try {
       await refreshSession();
-      // Retry the original request; withCredentials sends the new access token
-      // cookie that `/v1/refresh` just set.
-      return api(original);
-    } catch {
-      // Refresh token itself is expired/invalid — clear session and re-login.
-      clearStoredOrgId();
-      window.location.href = '/login';
+    } catch (refreshError) {
+      if (isUnauthorized(refreshError as AxiosError)) {
+        signOut();
+      }
       return Promise.reject(err);
     }
+    return api(original);
   }
 );
 
