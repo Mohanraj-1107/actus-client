@@ -1,6 +1,6 @@
 # AGENTS.md
 
-ERP Core Frontend — React 19 + Vite 8 + TypeScript + Tailwind CSS v4 admin dashboard for a Spring Boot backend. Frontend only; no backend code lives here.
+Actus — React 19 + Vite 8 + TypeScript + Tailwind CSS v4 admin dashboard for a Spring Boot backend. Frontend only; no backend code lives here.
 
 ## Commands
 

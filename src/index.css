@@ -22,7 +22,7 @@
 /*
  * Theme tokens.
  *
- * The default ERP theme is protected. Only `[data-theme]` blocks below may
+ * The default Actus theme is protected. Only `[data-theme]` blocks below may
  * alter any of these tokens, and the default color values are intentionally
  * byte-for-byte materializations of the original `slate-*` / `indigo-*`
  * backgrounds, surfaces, borders, and primary actions.

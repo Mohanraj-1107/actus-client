@@ -1,4 +1,4 @@
-# ERP Core Frontend — Development Plan
+# Actus Frontend — Development Plan
 
 This file tracks the frontend development plan, current status, and next steps for the React client at `/Users/mohan-23529/myspace/erpclient`. Use this to resume work in any future session.
 
@@ -6,7 +6,7 @@ This file tracks the frontend development plan, current status, and next steps f
 
 ## 1. Project Overview
 
-**ERP Core Frontend** is a React-based admin dashboard for the ERP Core backend.
+**Actus Frontend** is a React-based admin dashboard for the Actus backend.
 
 | Item | Value |
 |------|-------|
@@ -36,7 +36,7 @@ This file tracks the frontend development plan, current status, and next steps f
 | Axios instance | ✅ Complete | `src/api/axiosInstance.ts` with `withCredentials: true` and 401→refresh interceptor |
 | Router | ✅ Complete | `src/App.tsx` with `BrowserRouter`, `/login` route, root redirects to `/login` |
 | State provider | ✅ Complete | TanStack Query `QueryClientProvider` in `main.tsx` |
-| Tailwind theme | ✅ Complete | `src/index.css` with ERP blue/slate color palette |
+| Tailwind theme | ✅ Complete | `src/index.css` with Actus blue/slate color palette |
 | Login page | ✅ Complete | `src/pages/Login.tsx` — clean two-column layout, email/password fields, show/hide toggle, error alerts, loading state, auto-redirect on success |
 | Product module | ✅ Complete | List / Create / Edit with product catalogue and product lookups |
 | Inventory module | ✅ Complete | List / Low Stock / Stock adjust dialog |
@@ -50,7 +50,7 @@ This file tracks the frontend development plan, current status, and next steps f
 src/
 ├── main.tsx              # Entry point (BrowserRouter + QueryClientProvider)
 ├── App.tsx               # Router: /login route
-├── index.css             # Tailwind v4 imports + ERP theme
+├── index.css             # Tailwind v4 imports + Actus theme
 ├── types/index.ts        # Shared TypeScript types
 ├── api/
 │   └── axiosInstance.ts  # Axios client with cookies + 401 refresh
@@ -73,7 +73,7 @@ Build frontend modules in this exact order:
 | # | Task | File(s) | Status |
 |---|------|---------|--------|
 | 1 | Vite + React + TypeScript setup | `package.json`, `vite.config.ts`, `tsconfig.json` | ✅ Done |
-| 2 | Tailwind CSS v4 + ERP theme | `src/index.css` | ✅ Done |
+| 2 | Tailwind CSS v4 + Actus theme | `src/index.css` | ✅ Done |
 | 3 | Axios instance with cookies | `src/api/axiosInstance.ts` | ✅ Done |
 | 4 | Router setup | `src/App.tsx`, `src/main.tsx` | ✅ Done |
 | 5 | Login page | `src/pages/Login.tsx` | ✅ Done |

@@ -1,4 +1,4 @@
-# ERP Core — Frontend Architecture
+# Actus — Frontend Architecture
 
 This document defines the frontend project structure, layered architecture, coding standards, and build sequence for the React client at `/Users/mohan-23529/myspace/erpclient`. Build the frontend module by module following this guide.
 
@@ -6,7 +6,7 @@ This document defines the frontend project structure, layered architecture, codi
 
 ## 1. Project Overview
 
-**ERP Core Frontend** is a React-based admin dashboard that consumes the Spring Boot backend API at `http://localhost:8080/erp/api`.
+**Actus Frontend** is a React-based admin dashboard that consumes the Spring Boot backend API at `http://localhost:8080/erp/api`.
 
 - **Framework:** React 19 with Vite 8
 - **Language:** TypeScript

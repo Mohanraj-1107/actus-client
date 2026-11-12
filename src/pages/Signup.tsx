@@ -170,7 +170,7 @@ export default function Signup() {
             <Building2 className="h-6 w-6" />
           </div>
           <span className="text-2xl font-bold tracking-tight text-slate-900">
-            ERP Core
+            Actus
           </span>
         </div>
 
@@ -188,7 +188,7 @@ export default function Signup() {
         </div>
 
         <p className="mt-12 text-[10px] font-medium uppercase tracking-wider text-slate-500">
-          ERP Core v0.0.1
+          Actus v0.0.1
         </p>
       </div>
 
@@ -208,7 +208,7 @@ export default function Signup() {
                   <Building2 className="h-5 w-5" />
                 </div>
                 <span className="text-xl font-bold tracking-tight text-slate-900">
-                  ERP Core
+                  Actus
                 </span>
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-slate-900">
@@ -600,7 +600,7 @@ export default function Signup() {
 
             <div className="mt-12 border-t border-theme-border pt-8">
               <p className="text-center text-xs leading-relaxed text-slate-500">
-                ERP Core is built for small-scale businesses with organization-centric
+                Actus is built for small-scale businesses with organization-centric
                 data isolation.
               </p>
             </div>

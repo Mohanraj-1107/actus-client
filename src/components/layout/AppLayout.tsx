@@ -50,7 +50,7 @@ function resolveTitle(pathname: string): { label: string; Icon: NavItem['icon'] 
     (item) => pathname === item.href || pathname.startsWith(item.href + '/')
   );
   if (active) return { label: active.label, Icon: active.icon };
-  return { label: 'ERP Core', Icon: Building2 };
+  return { label: 'Actus', Icon: Building2 };
 }
 
 export default function AppLayout() {
@@ -96,7 +96,7 @@ export default function AppLayout() {
               {!isSidebarCollapsed && (
                 <div className="min-w-[80px] max-w-[200px] truncate">
                   <span className="block truncate text-sm font-bold text-theme-nav-fg leading-tight">
-                    ERP Core
+                    Actus
                   </span>
                 </div>
               )}
@@ -148,15 +148,15 @@ export default function AppLayout() {
             {!isSidebarCollapsed ? (
               <>
                 <p className="text-[9px] font-light text-theme-nav-muted uppercase tracking-tighter">
-                  ERP Core v0.0.1
+                  Actus v0.0.1
                 </p>
                 <p className="text-[9px] font-normal text-theme-nav-subtle mt-0.5 tracking-tight">
-                  Organization-centric ERP
+                  Organization-centric business management
                 </p>
               </>
             ) : (
               <div className="flex justify-center text-[9px] font-mono text-theme-nav-subtle">
-                EC
+                A
               </div>
             )}
           </div>

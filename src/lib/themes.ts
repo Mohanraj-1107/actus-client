@@ -11,7 +11,7 @@ export type ThemeId =
  * the runtime source of truth; this object mirrors their values, powers the
  * selector preview swatches, and keeps the theme names/ordering in one place.
  *
- * The default theme's palette is the original ERP palette and must never be
+ * The default theme's palette is the original Actus palette and must never be
  * modified. The five enterprise palettes are muted, low-saturation palettes
  * from the design spec.
  */

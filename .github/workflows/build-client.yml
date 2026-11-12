@@ -1,4 +1,4 @@
-name: ERP Client Build
+name: Actus Client Build
 
 on:
   push:

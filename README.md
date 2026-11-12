@@ -1,6 +1,6 @@
-# ERP Core Frontend
+# Actus Frontend
 
-ERP Core Frontend is a React-based admin dashboard for the ERP Core backend (Spring Boot). It provides organization-centric management of products, inventory, customers, suppliers, purchases, and sales.
+Actus is a React-based admin dashboard for the Actus backend (Spring Boot). It provides organization-centric management of products, inventory, customers, suppliers, purchases, and sales.
 
 ---
 
@@ -46,7 +46,7 @@ erpclient/
 └── src/
     ├── main.tsx              # Entry point (BrowserRouter + QueryClientProvider)
     ├── App.tsx               # Route definitions
-    ├── index.css             # Tailwind v4 imports + ERP theme
+    ├── index.css             # Tailwind v4 imports + Actus theme
     ├── types/index.ts        # Shared TypeScript types
     │
     ├── api/                  # API client layer
@@ -224,7 +224,7 @@ See `plan.md` for the full development plan and task tracker.
 - Axios instance with cookies + 401 refresh interceptor
 - Router (`/login` route, root redirects to `/login`)
 - TanStack Query `QueryClientProvider`
-- Tailwind theme + ERP color palette
+- Tailwind theme + Actus color palette
 - Login page (centered branding, org email/password, show/hide toggle, error alerts, loading state)
 - Dashboard page (blue sidebar nav, white content area, stats cards, quick actions, avatar dropdown with org info + signout)
 
