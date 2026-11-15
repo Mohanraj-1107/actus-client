@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { clearStoredOrgId, setStoredOrgId } from '@/lib/authStorage';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/erp/api';
+const API_BASE = import.meta.env.VITE_API_BASE || '/erp/api';
 
 export const api = axios.create({
   baseURL: API_BASE,

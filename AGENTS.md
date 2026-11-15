@@ -13,7 +13,7 @@ Actus — React 19 + Vite 8 + TypeScript + Tailwind CSS v4 admin dashboard for a
 
 - ALL API calls hit the running Spring Boot backend at `http://localhost:8080/erp/api`. Without it, every page errors.
 - Backend must send CORS headers for `http://localhost:5173` with `allowCredentials(true)` and let OPTIONS preflight through its JWT filter. There is no Vite dev proxy.
-- Override the API base with `VITE_API_BASE` env var (e.g. `.env.local`, gitignored via `*.local`).
+- API base comes from `VITE_API_BASE`: `.env.development` → `http://localhost:8080/erp/api`, `.env` → relative `/erp/api` for builds served behind the nginx proxy. Override locally with `.env.local` (gitignored via `*.local`); `.env.example` documents the values.
 
 ## Auth flow (touch with care)
 
